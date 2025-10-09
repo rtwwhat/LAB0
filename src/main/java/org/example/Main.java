@@ -11,8 +11,8 @@ public class Main {
             System.out.println("\n=== To-Do List ===");
             System.out.println("1. Создать проект");
             System.out.println("2. Добавить задачу");
-            System.out.println("3. Показать задачи");
-            System.out.println("4. Отметить задачу выполненной");
+            System.out.println("3. Показать проекты");
+            System.out.println("4. Посмотреть задачи или отметить задачу выполненной");
             System.out.println("5. Удалить задачу");
             System.out.println("0. Выход");
             System.out.print("Выберите действие: ");
@@ -50,7 +50,7 @@ public class Main {
                     break;
                 }
                 case 3: {
-                    System.out.println("Задачи:\n");
+                    System.out.println("Проекты:\n");
                     for (int i = 0; i < user.getProjects().size(); i++) {
                         System.out.println(i + ". " + user.getProjects().get(i).getName());
                     }
@@ -73,14 +73,16 @@ public class Main {
                         System.out.println("Задач нет.");
                         break;
                     }
-                    System.out.println("Выберите задачу по индексу для отметки как выполненной:");
+                    System.out.println("Введите '-1' для возврата в меню или выберите задачу по индексу для отметки как выполненной:");
                     for (int i = 0; i < selectedProject.getTask_list().size(); i++) {
                         System.out.println(i + ". " + selectedProject.getTask_list().get(i).outPut());
                     }
                     int tIndex = scanner.nextInt();
                     scanner.nextLine();
-
-                    selectedProject.getTask_list().get(tIndex).done();
+                    if (tIndex == -1) {
+                        break;
+                    }
+                    selectedProject.getTask_list().get(tIndex).markCompleted();
                     break;
                 }
                 case 5: {

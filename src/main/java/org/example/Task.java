@@ -1,48 +1,42 @@
 package org.example;
 
-public class Task {
-    private String title;
+public class Task extends Named implements Completable {
     private String description;
     private String deadline;
     private boolean completed;
 
     public Task(String title, String description, String deadline) {
-        this.title = title;
+        super(title);
         this.description = description;
         this.deadline = deadline;
         this.completed = false;
-
     }
 
-    public void done() {
+    @Override
+    public void markCompleted() {
         this.completed = true;
     }
 
-    public String isCompleted() {
-        if (completed) {
-            return "[✓]";
-        } else {
-            return "[]";
-        }
+
+    @Override
+    public boolean isCompleted() {
+        return completed;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDeadline() {
-        return deadline;
+    @Override
+    public String getStatus() {
+        return completed ? "[✓]" : "[ ]";
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void showTask() {
-
+    public String getDeadline() {
+        return deadline;
     }
 
     public String outPut() {
-        return isCompleted() + " " + title + "(до " + deadline + ") - " + description;
+        return getStatus() + " " + getName() + " (до " + deadline + ") - " + description;
     }
 }

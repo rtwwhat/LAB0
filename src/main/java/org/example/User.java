@@ -1,6 +1,5 @@
 package org.example;
 
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +12,6 @@ public class User {
         this.projects = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
-    }
-
     public List<Project> getProjects() {
         return projects;
     }
@@ -25,14 +20,4 @@ public class User {
         projects.add(project);
     }
 
-    public void showProjects() {
-        for (int i = 0; i < projects.size(); i++) {
-            System.out.print(i + ". ");
-            projects.get(i).output();
-        }
-    }
-
-    public String output() {
-        return "Пользователь: " + name;
-    }
 }
